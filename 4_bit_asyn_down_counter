@@ -1,0 +1,58 @@
+
+///100 Days of RTL///
+
+///Abilash P///
+
+///4 BIT - Down counter with Asynchronous clock///
+
+module down_counter_asyn (input CLK, input RST, output reg [3:0] Down_Counter);
+
+  always @(posedge CLK) 
+    begin
+    if (RST) 
+      begin
+        Down_Counter <= 4'b1111;
+      end
+    else 
+      begin
+        Down_Counter[0] <= ~Down_Counter[0];
+      end
+  end
+
+  always @(posedge Down_Counter[0]) 
+    begin
+    if (RST)
+      begin
+        Down_Counter <= 4'b1111;
+      end
+    else 
+      begin
+        Down_Counter[1] <= ~Down_Counter[1];
+      end
+  end
+
+  always @(posedge Down_Counter[1]) 
+    begin
+    if (RST) 
+      begin
+        Down_Counter <= 4'b1111;
+    end
+    else 
+      begin
+        Down_Counter[2] <= ~Down_Counter[2];
+      end
+  end
+
+  always @(posedge Down_Counter[2]) 
+    begin
+    if (RST) 
+      begin
+        Down_Counter <= 4'b1111;
+      end
+    else 
+      begin
+        Down_Counter[3] <= ~Down_Counter[3];
+      end
+  end
+
+endmodule
