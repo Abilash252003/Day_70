@@ -1,0 +1,40 @@
+
+///100 Days of RTL///
+
+///Abilash P///
+
+///4 BIT - Down counter with Asynchronous///
+
+module down_counter_asyn_tb();
+  
+  reg  CLK, RST;
+  wire [3:0] Down_Counter;
+  
+  down_counter_asyn DUT (.CLK(CLK), .RST(RST), .Down_Counter(Down_Counter));
+  
+  initial 
+    begin
+      CLK=1;
+      forever #5 CLK = ~CLK;  
+    end 
+  
+  initial
+    begin
+      RST = 1'b1;
+      #20;
+      RST = 1'b0;
+      #160;
+      $finish;
+    end
+  
+  initial
+     begin
+       $dumpfile("dump.vcd");
+       $dumpvars(1);
+     end
+  
+initial
+  $monitor("simtime = %g, CLK = %b, RST = %b, Down_Counter = %b", $time, CLK, RST, Down_Counter);
+  
+endmodule
+      
